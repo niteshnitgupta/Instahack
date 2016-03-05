@@ -3636,7 +3636,6 @@ ul.nofitications-dropdown {
 	.grid-right {
 		float: left;
 		width: 50%;
-		margin: 1em 0 0 1em;
 	}
 	#map1 {
 		height: 360px !important;
@@ -3682,7 +3681,6 @@ ul.nofitications-dropdown {
 	}
 	.grid-right {
 		width: 56%;
-		margin: 1em 0 0 .5em;
 	}
 	.panel-title {
 		padding: 16px 10px;
