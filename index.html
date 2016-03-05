@@ -3,15 +3,18 @@
 <head>
 <title>Baxster an Admin Panel Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <link href="css/style.css" rel='stylesheet' type='text/css' />
 <link rel="icon" href="favicon.ico" type="image/x-icon" >
+
+
+
 <link href="css/font-awesome.css" rel="stylesheet">
 <link href="css/hover.css" rel="stylesheet">
-<script src="js/Chart.js"></script>
 <script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/modernizr.custom.js"></script>
 <!--webfonts-->
 <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
 <!--//webfonts-->
@@ -30,27 +33,12 @@
 </head>
 <body class="cbp-spmenu-push">
 	<div class="main-content">
-		<!--left-fixed -navigation-->
-		<div class="sidebar" role="navigation">
-            <div class="navbar-collapse">
-				<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right dev-page-sidebar mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" id="cbp-spmenu-s1">
-					<div class="scrollbar scrollbar1">
-						<ul class="nav" id="side-menu">
-							<li>
-								<a href="index.html" class="active"><i class="fa fa-home nav_icon"></i>Logout</a>
-							</li>
-						</ul>
-					</div>
-					<!-- //sidebar-collapse -->
-				</nav>
-			</div>
-		</div>
-		<!--left-fixed -navigation-->
+
 		<!-- header-starts -->
 		<div class="sticky-header header-section ">
-			<div class="header-left">
+			<div class="header-left" style="background-color:#67d3e0 !important;">
 				<!--logo -->
-				<div class="logo">
+				<div class="logo" style="float:left;">
 					<a href="index.html">
 						<ul>
 							<li><img src="images/logo1.png" alt="" /></li>
@@ -59,9 +47,9 @@
 						</ul>
 					</a>
 				</div>
-				<div style="float:right;">
-					<button id="showLeftPush"><i class="fa fa-bars"></i></button>
-					<div class="clearfix"> </div>
+				<div style="float:right; background-color:#67d3e0 !important;">
+					<button id="showLeftPush"><i class="fa fa-lock"></i></button>
+					<div class="clearfix" style=" background-color:#67d3e0 !important;"> </div>
 				</div>
 			</div>
 
@@ -77,11 +65,11 @@
 					<div class="col-md-3 ticket-grid">
 						<div class="tickets">
 							<div class="grid-left">
-								<a href="#" class="hvr-icon-float-away">Accept</a><br /><br />
-								<a href="#" class="hvr-icon-sink-away">Reject</a>
+								<a href="#" class="hvr-icon-float-away" style="color:#00FF00;">स्वीकार</a><br /><br />
+								<a href="#" class="hvr-icon-sink-away" style="color:#FF0000;">अस्वीकार</a>
 							</div>
 							<div class="grid-right">
-								<h3>Koramangala <span>Loading 08:00 PM</span></h3>
+								<h3>Koramangala <div>चढ़ाना 08:00 सुबह</div></h3>
 								<p>Rs. 452/-</p>
 							</div>
 							<div class="clearfix"> </div>
@@ -90,11 +78,11 @@
 					<div class="col-md-3 ticket-grid">
 						<div class="tickets">
 							<div class="grid-left">
-								<a href="#" class="hvr-icon-float-away">Accept</a><br /><br />
-								<a href="#" class="hvr-icon-sink-away">Reject</a>
+								<a href="#" class="hvr-icon-float-away" style="color:#00FF00;">स्वीकार</a><br /><br />
+								<a href="#" class="hvr-icon-sink-away" style="color:#FF0000;">अस्वीकार</a>
 							</div>
 							<div class="grid-right">
-								<h3>Koramangala <span>Loading 08:00 PM</span></h3>
+								<h3>Koramangala <div>चढ़ाना 08:00 शाम</div></h3>
 								<p>Rs. 452/-</p>
 							</div>
 							<div class="clearfix"> </div>
@@ -103,11 +91,11 @@
 					<div class="col-md-3 ticket-grid">
 						<div class="tickets">
 							<div class="grid-left">
-								<a href="#" class="hvr-icon-float-away">Accept</a><br /><br />
-								<a href="#" class="hvr-icon-sink-away">Reject</a>
+								<a href="#" class="hvr-icon-float-away" style="color:#00FF00;">स्वीकार</a><br /><br />
+								<a href="#" class="hvr-icon-sink-away" style="color:#FF0000;">अस्वीकार</a>
 							</div>
 							<div class="grid-right">
-								<h3>Koramangala <span>Unloading 08:00 PM</span></h3>
+								<h3>Koramangala <div>उतारना 08:00 PM</div></h3>
 								<p>Rs. 452/-</p>
 							</div>
 							<div class="clearfix"> </div>
@@ -129,53 +117,15 @@
 				<!-- container -->
 				<div class="container">
 					<div class="copyright">
-						<p>Designed by Team QPE</p>
+						<p>Designed by Team QPE Code Dunkers</p>
 					</div>
 				</div>
         <!--//footer-->
 	</div>
-	<!-- Classie -->
-		<script src="js/classie.js"></script>
-		<script>
-			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
-				showLeftPush = document.getElementById( 'showLeftPush' ),
-				body = document.body;
-
-			showLeftPush.onclick = function() {
-				classie.toggle( this, 'active' );
-				classie.toggle( body, 'cbp-spmenu-push-toright' );
-				classie.toggle( menuLeft, 'cbp-spmenu-open' );
-				disableOther( 'showLeftPush' );
-			};
 
 
-			function disableOther( button ) {
-				if( button !== 'showLeftPush' ) {
-					classie.toggle( showLeftPush, 'disabled' );
-				}
-			}
-		</script>
-	<!-- Bootstrap Core JavaScript -->
-
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-        <script type="text/javascript" src="js/dev-loaders.js"></script>
-        <script type="text/javascript" src="js/dev-layout-default.js"></script>
-		<script type="text/javascript" src="js/jquery.marquee.js"></script>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 
-		<!-- candlestick -->
-		<script type="text/javascript" src="js/jquery.jqcandlestick.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/jqcandlestick.css" />
-		<!-- //candlestick -->
-
-		<!--max-plugin-->
-		<script type="text/javascript" src="js/plugins.js"></script>
-		<!--//max-plugin-->
-
-		<!--scrolling js-->
-		<script src="js/jquery.nicescroll.js"></script>
-		<script src="js/scripts.js"></script>
 
 
 </body>

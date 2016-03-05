@@ -62,7 +62,7 @@ body a:hover{
 }
 .header-left {
     float: left;
-    width: 29%;
+    width: 100%;
 }
 .header-right {
     float: right;
@@ -298,7 +298,6 @@ i.fa.fa-tasks{
 .logo {
     background: #67d3e0;
     text-align: center;
-    float: left;
 }
 .logo a{
     padding: 1.2em 2.03em;
@@ -3143,7 +3142,7 @@ ul.nofitications-dropdown {
 		font-size: 3em;
 	}
 	.header-left {
-		width: 33%;
+		width: 100%;
 	}
 }
 @media (max-width:1366px){
@@ -3157,7 +3156,7 @@ ul.nofitications-dropdown {
 		padding: 10px 0 10px 100px;
 	}
 	.header-left {
-		width: 34% !important;
+		width: 100% !important;
 	}
 }
 @media (max-width:1280px){
@@ -3171,7 +3170,7 @@ ul.nofitications-dropdown {
 		width: 840px;
 	}
 	.header-left {
-		width: 36% !important;
+		width: 100% !important;
 	}
 }
 @media (max-width:1080px){
@@ -3179,7 +3178,7 @@ ul.nofitications-dropdown {
 		margin: 1.2em 0 0 3em;
 	}
 	.header-left {
-		width: 40% !important;
+		width: 100% !important;
 	}
 	.cbp-spmenu-vertical {
 		width: 230px;
@@ -3273,7 +3272,7 @@ ul.nofitications-dropdown {
 		width: 30%;
 	}
 	.header-left {
-		width: 45% !important;
+		width: 100% !important;
 	}
 	.panel-title {
 		font-size: 1.2em;
@@ -3336,7 +3335,7 @@ ul.nofitications-dropdown {
 		width: 630px;
 	}
 	.header-left {
-		width: 45% !important;
+		width: 100% !important;
 	}
 }
 @media (max-width:800px){
@@ -3420,7 +3419,7 @@ ul.nofitications-dropdown {
 		margin: 1.2em 0 0 2em;
 	}
 	.header-left {
-		width: 48% !important;
+		width: 100% !important;
 	}
 	.login-body {
 		width: 50%;
