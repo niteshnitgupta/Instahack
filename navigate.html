@@ -8,7 +8,6 @@
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <link href="css/style.css" rel='stylesheet' type='text/css' />
-<link rel="icon" href="favicon.ico" type="image/x-icon" >
 
 
 
@@ -16,7 +15,7 @@
 <link href="css/hover.css" rel="stylesheet">
 <script src="js/jquery-1.11.1.min.js"></script>
 <!--webfonts-->
-<link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
 <!--//webfonts-->
 <!--animate-->
 <link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
@@ -30,6 +29,37 @@
 <script src="js/custom.js"></script>
 <link href="css/custom.css" rel="stylesheet">
 <!--//Metis Menu -->
+<style>
+	#map {
+		height: 500px !important;
+	}
+
+	#right-panel {
+		font-family: 'Roboto','sans-serif';
+		line-height: 30px;
+	}
+
+	#right-panel select, #right-panel input {
+		font-size: 15px;
+	}
+
+	#right-panel i {
+		font-size: 12px;
+	}
+	#right-panel {
+		height: 100%;
+		float: right;
+		/*width: 390px;*/
+		overflow: auto;
+	}
+
+	.switch {
+	    z-index: 9999999999999;
+	    position: fixed !important;
+	    bottom: 50px ;
+	    right: 3px;
+	}
+</style>
 </head>
 <body class="cbp-spmenu-push">
 	<div class="main-content">
@@ -58,59 +88,17 @@
 		<!-- //header-ends -->
 		<!-- main content start-->
 		<div id="page-wrapper">
-			<div class="main-page">
+			<div class="main-page" style="height: 100%; margin: 0;padding: 0;">
 
-				<!-- four-grids -->
-				<div class="row four-grids">
-					<div class="col-md-3 ticket-grid">
-						<div class="tickets">
-							<div class="grid-left">
-								<a href="navigate.html" class="hvr-icon-float-away" style="color:#00FF00;">स्वीकार</a><br /><br />
-								<a href="#" class="hvr-icon-sink-away" style="color:#FF0000;">अस्वीकार</a>
-							</div>
-							<div class="grid-right">
-								<h3>Koramangala <div>चढ़ाना 08:00 सुबह</div></h3>
-								<p>Rs. 452/-</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-					<div class="col-md-3 ticket-grid">
-						<div class="tickets">
-							<div class="grid-left">
-								<a href="navigate.html" class="hvr-icon-float-away" style="color:#00FF00;">स्वीकार</a><br /><br />
-								<a href="#" class="hvr-icon-sink-away" style="color:#FF0000;">अस्वीकार</a>
-							</div>
-							<div class="grid-right">
-								<h3>Koramangala <div>चढ़ाना 08:00 शाम</div></h3>
-								<p>Rs. 452/-</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-					<div class="col-md-3 ticket-grid">
-						<div class="tickets">
-							<div class="grid-left">
-								<a href="navigate.html" class="hvr-icon-float-away" style="color:#00FF00;">स्वीकार</a><br /><br />
-								<a href="#" class="hvr-icon-sink-away" style="color:#FF0000;">अस्वीकार</a>
-							</div>
-							<div class="grid-right">
-								<h3>Koramangala <div>उतारना 08:00 PM</div></h3>
-								<p>Rs. 452/-</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-
-
-					<div class="clearfix"> </div>
-				</div>
-				<!--//row-->
+				<div id="right-panel" style="width:100%; display:none;"></div>
+				<div id="map" style="width:100%;"></div>
 			</div>
 		</div>
 		<!--footer-->
-		 <div class="dev-page">
 
+
+		 <div class="dev-page">
+<div class="switch" id="switch" style="background-color:#000000 !important; color:#fff !important; padding: 1em; border-radius: 15px;">Switch</div>
 			<!-- page footer -->
 			<!-- dev-page-footer-closed dev-page-footer-fixed -->
             <div class="dev-page-footer dev-page-footer-fixed">
@@ -126,7 +114,40 @@
 
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 
+		<script>
+			function initMap() {
+				var directionsDisplay = new google.maps.DirectionsRenderer;
+				var directionsService = new google.maps.DirectionsService;
+				var map = new google.maps.Map(document.getElementById('map'), {
+					zoom: 7,
+					center: {lat: 41.85, lng: -87.65}
+				});
+				directionsDisplay.setMap(map);
+				directionsDisplay.setPanel(document.getElementById('right-panel'));
 
+				var start = "Koramangala, Bangalore, Karnataka";
+				var end = "Marathahalli, Bangalore, Karnataka";
+				directionsService.route({
+					origin: start,
+					destination: end,
+					travelMode: google.maps.TravelMode.DRIVING
+				}, function(response, status) {
+					if (status === google.maps.DirectionsStatus.OK) {
+						directionsDisplay.setDirections(response);
+					} else {
+						window.alert('Directions request failed due to ' + status);
+					}
+				});
+			}
+
+			$("#switch").click(function(){
+				$( "#right-panel" ).toggle();
+				$( "#map" ).toggle();
+			});
+		</script>
+		<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcBqJqh-Us9rSE8_57dLVm4Kq1L_Ccink&callback=initMap">
+    </script>
 
 </body>
 </html>

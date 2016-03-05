@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+
+      #right-panel {
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+      }
+
+      #right-panel select, #right-panel input {
+        font-size: 15px;
+      }
+
+      #right-panel i {
+        font-size: 12px;
+      }
+      #right-panel {
+        height: 100%;
+        float: right;
+        /*width: 390px;*/
+        overflow: auto;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div id="right-panel" style="width:100%; display:none;"></div>
+    <div id="map" style="width:100%;"></div>
+
+
+
+    <script>
+      function initMap() {
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: {lat: 41.85, lng: -87.65}
+        });
+        directionsDisplay.setMap(map);
+        directionsDisplay.setPanel(document.getElementById('right-panel'));
+
+        var start = "Koramangala, Bangalore, Karnataka";
+        var end = "Marathahalli, Bangalore, Karnataka";
+        directionsService.route({
+          origin: start,
+          destination: end,
+          travelMode: google.maps.TravelMode.DRIVING
+        }, function(response, status) {
+          if (status === google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcBqJqh-Us9rSE8_57dLVm4Kq1L_Ccink&callback=initMap">
+    </script>
+  </body>
+</html>
