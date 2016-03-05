@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "com.aditechsolutions.boridez"
+    versionCode = "10"
+    version     = "1.0.0" >
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>Instahack</name>
+
+    <description>
+     Instahack Mobile App
+    </description>
+
+    <preference name="stay-in-webview" value="true" />
+    <preference name="phonegap-version" value="3.6.3" />
+
+    <gap:plugin name="org.apache.cordova.geolocation" />
+
+    <platform name="android" />
+
+    <author href="https://www.aditechsolutions.com" email="support@aditechsolutions.com">
+      QPE Code Dunkers
+    </author>
+
+    <!--
+      This allows your app to load assets from all *.phongap.com domains
+    -->
+    <access origin="*" subdomains="true" />
+</widget>
