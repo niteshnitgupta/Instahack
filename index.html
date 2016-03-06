@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Baxster an Admin Panel Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+<title>InstaHack</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -61,46 +61,9 @@
 			<div class="main-page">
 
 				<!-- four-grids -->
-				<div class="row four-grids">
-					<div class="col-md-3 ticket-grid">
-						<div class="tickets">
-							<div class="grid-left">
-								<a href="navigate.html" class="hvr-icon-float-away" style="color:#00FF00;">स्वीकार</a><br /><br />
-								<a href="#" class="hvr-icon-sink-away" style="color:#FF0000;">अस्वीकार</a>
-							</div>
-							<div class="grid-right">
-								<h3>Koramangala <div>चढ़ाना 08:00 सुबह</div></h3>
-								<p>Rs. 452/-</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-					<div class="col-md-3 ticket-grid">
-						<div class="tickets">
-							<div class="grid-left">
-								<a href="navigate.html" class="hvr-icon-float-away" style="color:#00FF00;">स्वीकार</a><br /><br />
-								<a href="#" class="hvr-icon-sink-away" style="color:#FF0000;">अस्वीकार</a>
-							</div>
-							<div class="grid-right">
-								<h3>Koramangala <div>चढ़ाना 08:00 शाम</div></h3>
-								<p>Rs. 452/-</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
-					<div class="col-md-3 ticket-grid">
-						<div class="tickets">
-							<div class="grid-left">
-								<a href="navigate.html" class="hvr-icon-float-away" style="color:#00FF00;">स्वीकार</a><br /><br />
-								<a href="#" class="hvr-icon-sink-away" style="color:#FF0000;">अस्वीकार</a>
-							</div>
-							<div class="grid-right">
-								<h3>Koramangala <div>उतारना 08:00 PM</div></h3>
-								<p>Rs. 452/-</p>
-							</div>
-							<div class="clearfix"> </div>
-						</div>
-					</div>
+				<div class="row four-grids" id="listOfJobs">
+
+				</div>
 
 
 					<div class="clearfix"> </div>
@@ -126,7 +89,69 @@
 
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 
+<script>
+	function getJobs() {
+		$.get("http://192.168.6.167:8888/Instahack/porter_server.php?action=getListPorter&lat=" + cur_latitude + "&lon=" + cur_longitude, function( data ) {
+			$("#listOfJobs").html("");
+			$.each($.parseJSON(data), function(key, value){
+				console.log(value);
+				$("#listOfJobs").append("<div class=\"col-md-3 ticket-grid\">"+
+				            "<div class=\"tickets\">"+
+				            "  <div class=\"grid-left\">"+
+				            "    <a href=\"#\" class=\"hvr-icon-float-away\" style=\"color:#00FF00;\" jobkey=\"" + key + "\" lat=\"" + value.location[0] + "\" lon=\"" + value.location[1] + "\">स्वीकार</a><br /><br />"+
+				            "    <a href=\"#\" class=\"hvr-icon-sink-away\" style=\"color:#FF0000;\">अस्वीकार</a>"+
+				            "  </div>"+
+				            "  <div class=\"grid-right\">"+
+				            "    <h3>" + value.loc_name + " <div> " + value.date_time + " </div></h3>"+
+				            "    <p>Rs. " + value.price + "/-</p>"+
+				            "  </div>"+
+				            "  <div class=\"clearfix\"> </div>"+
+				            "</div>"+
+				          "</div>");
+			});
+			recreateClick();
+		});
+	}
+function recreateClick() {
+	$(".hvr-icon-sink-away").click(function(){
+		$(this).parent().parent().parent().hide();
+	});
 
+	$(".hvr-icon-float-away").click(function(){
+		click_lat=$(this).attr("lat");
+		click_lon=$(this).attr("lon");
+
+		$.get("http://192.168.6.167:8888/Instahack/porter_server.php?action=updateJob&jobid="
+		+$(this).attr("jobkey")+"&cur_lat="+cur_latitude+"&cur_lon="+cur_longitude
+		+"&lat="+$(this).attr("lat")+"&lon="+$(this).attr("lon"),
+		 function(data){
+			 window.location.replace("navigate.html?cur_lat="+cur_latitude+"&cur_lon="+cur_longitude
+	 		+"&lat="+click_lat+"&lon="+click_lon);
+		});
+	});
+}
+
+var click_lat;
+var click_lon;
+
+var cur_latitude;
+var cur_longitude;
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+function showPosition(position) {
+    cur_latitude = position.coords.latitude;
+    cur_longitude = position.coords.longitude;
+		getJobs();
+}
+
+
+getLocation();
+</script>
 
 </body>
 </html>

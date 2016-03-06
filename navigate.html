@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Baxster an Admin Panel Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+<title>InstaHack</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -59,6 +59,13 @@
 	    bottom: 50px ;
 	    right: 3px;
 	}
+
+	.complete_trip {
+		z-index: 9999999999999;
+		position: fixed !important;
+		bottom: 50px ;
+		left: 3px;
+	}
 </style>
 </head>
 <body class="cbp-spmenu-push">
@@ -98,8 +105,9 @@
 
 
 		 <div class="dev-page">
-<div class="switch" id="switch" style="background-color:#000000 !important; color:#fff !important; padding: 1em; border-radius: 15px;">Switch</div>
-			<!-- page footer -->
+<div class="switch" id="switch" style="background-color:#000000 !important; color:#fff !important; padding: 1em; border-radius: 15px;"><span id="label_dir">दिशा </span><span id="label_map" style="display:none;"> नक्शा </span></div>
+
+<div class="complete_trip" id="complete_trip" style="background-color:#000000 !important; color:#fff !important; padding: 1em; border-radius: 15px;"><span>कार्य सम्पन्न </span></div>
 			<!-- dev-page-footer-closed dev-page-footer-fixed -->
             <div class="dev-page-footer dev-page-footer-fixed">
 				<!-- container -->
@@ -115,22 +123,32 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 
 		<script>
+		function getParameterByName(name, url) {
+			if (!url) url = window.location.href;
+			name = name.replace(/[\[\]]/g, "\\$&");
+			var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+					results = regex.exec(url);
+			if (!results) return null;
+			if (!results[2]) return '';
+			return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
 			function initMap() {
 				var directionsDisplay = new google.maps.DirectionsRenderer;
 				var directionsService = new google.maps.DirectionsService;
 				var map = new google.maps.Map(document.getElementById('map'), {
 					zoom: 7,
-					center: {lat: 41.85, lng: -87.65}
+					center: {lat: getParameterByName("cur_lat"), lng: getParameterByName("cur_lon")}
 				});
 				directionsDisplay.setMap(map);
 				directionsDisplay.setPanel(document.getElementById('right-panel'));
 
-				var start = "Koramangala, Bangalore, Karnataka";
-				var end = "Marathahalli, Bangalore, Karnataka";
+				var start = getParameterByName("cur_lat") + ", " + getParameterByName("cur_lon");
+				var end = getParameterByName("lat") + ", " + getParameterByName("lon");
 				directionsService.route({
 					origin: start,
 					destination: end,
-					travelMode: google.maps.TravelMode.DRIVING
+					travelMode: google.maps.TravelMode.DRIVING,
+					region:"fr"
 				}, function(response, status) {
 					if (status === google.maps.DirectionsStatus.OK) {
 						directionsDisplay.setDirections(response);
@@ -143,10 +161,20 @@
 			$("#switch").click(function(){
 				$( "#right-panel" ).toggle();
 				$( "#map" ).toggle();
+				$( "#label_dir" ).toggle();
+				$( "#label_map" ).toggle();
+
 			});
+
+			$("#complete_trip").click(function(){
+				$.get("http://192.168.6.167:8888/Instahack/porter_server.php?action=finishJob&porterid=", function(){
+					window.location.replace("index.html");
+				});
+			});
+
 		</script>
 		<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcBqJqh-Us9rSE8_57dLVm4Kq1L_Ccink&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcBqJqh-Us9rSE8_57dLVm4Kq1L_Ccink&callback=initMap&language=hi">
     </script>
 
 </body>
