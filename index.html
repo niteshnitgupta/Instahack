@@ -91,7 +91,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.js"></script>
 <script>
 
-if($.cookie("userid") === undefined) {
+if(window.localStorage.getItem("key") === null) {
 	window.location.replace("login.html");
 }
 
@@ -155,7 +155,7 @@ function showPosition(position) {
 }
 
 function logout() {
-	$.removeCookie('userid');
+	window.localStorage.removeItem("key");
 	window.location.replace("login.html");
 }
 getLocation();

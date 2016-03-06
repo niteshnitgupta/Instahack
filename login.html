@@ -92,12 +92,12 @@
 			</div>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.js"></script>
 			<script type="text/javascript">
-			$.cookie("userid","1");
+			window.localStorage.setItem("key", "1");
 			$(document).on('click','#login',function(e) {
 				e.preventDefault();
 				window.location.href = 'index.html';
 			})
-			
+
 		</script>
 </body>
 </html>

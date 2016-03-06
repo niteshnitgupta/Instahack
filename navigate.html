@@ -173,7 +173,7 @@
 				});
 			});
 			function logout() {
-				$.removeCookie('userid');
+				window.localStorage.removeItem("key");
 				window.location.replace("login.html");
 			}
 		</script>
