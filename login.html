@@ -94,9 +94,15 @@
 			<script type="text/javascript">
 			$(document).on('click','#login',function(e) {
 				window.localStorage.setItem("key", $("#userid").val());
-				$.get("http://192.168.6.167:8888/Instahack/porter_server.php?action=porterAvailable&userid="+window.localStorage.getItem("key"), function(){
-					window.location.replace("index.html");
-				});
+
+				setTimeout(function(){
+					$.get("http://192.168.6.167:8888/Instahack/porter_server.php?action=porterAvailable&userid="+window.localStorage.getItem("key"), function(){
+						window.location.replace("index.html");
+					});
+				}, 2000);
+
+
+
 			})
 
 		</script>
