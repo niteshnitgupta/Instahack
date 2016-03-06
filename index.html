@@ -128,7 +128,7 @@ function recreateClick() {
 
 		$.get("http://192.168.6.167:8888/Instahack/porter_server.php?action=updateJob&jobid="
 		+$(this).attr("jobkey")+"&cur_lat="+cur_latitude+"&cur_lon="+cur_longitude
-		+"&lat="+$(this).attr("lat")+"&lon="+$(this).attr("lon"),
+		+"&lat="+$(this).attr("lat")+"&lon="+$(this).attr("lon")+"&userid="+window.localStorage.getItem("key"),
 		 function(data){
 			 window.location.replace("navigate.html?cur_lat="+cur_latitude+"&cur_lon="+cur_longitude
 	 		+"&lat="+click_lat+"&lon="+click_lon);
@@ -155,8 +155,10 @@ function showPosition(position) {
 }
 
 function logout() {
-	window.localStorage.removeItem("key");
-	window.location.replace("login.html");
+	$.get("http://192.168.6.167:8888/Instahack/porter_server.php?action=porterSleep&userid="+window.localStorage.getItem("key"), function(){
+		window.localStorage.removeItem("key");
+		window.location.replace("login.html");
+	});
 }
 getLocation();
 </script>

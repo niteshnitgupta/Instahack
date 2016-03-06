@@ -61,8 +61,8 @@ if ($_REQUEST['action'] == "findPorters") {
         "loc_name" => $locationName,
         "location" => array((float)lat, (float)los),
         "date_time" => $arrivalTime,
-        "price" => $price,
-        "numberOfPorters" => $numberOfPorters,
+        "price" => (float)$price,
+        "numberOfPorters" => (int)$numberOfPorters,
         "status" => "open",
         "distance" => 1000
     ));
@@ -92,7 +92,8 @@ if ($_REQUEST['action'] == "findPorters") {
                   'coordinates' => array((float)$_REQUEST['lat'], (float)$_REQUEST['lon']) ),
                '$maxDistance'=> 1000
              )
-          )
+          ),
+          'numberOfPorters' => array('$gt'=>0)
        )
     	)->sort(array('date_time'=> -1, 'price'=>-1));
 
@@ -111,7 +112,8 @@ if ($_REQUEST['action'] == "findPorters") {
                   'coordinates' => array((float)$_REQUEST['lat'], (float)$_REQUEST['lon']) ),
                '$maxDistance'=> 1000
              )
-          )
+          ),
+          'status'=>array('$eq'=> 'available')
        )
     	);
 
@@ -119,8 +121,32 @@ if ($_REQUEST['action'] == "findPorters") {
 
         echo json_encode(iterator_to_array($resultset));
 
-}
+} else if ($_REQUEST['action'] == "updateJob") {
+  $coll = $db->porters;
+  $newdata = array('$set' => array("status" => "accepted"));
+  $coll->update(array("_id" => (int)$_REQUEST['userid']), $newdata);
 
+  $coll = $db->jobs;
+  $coll->update(array("_id" => (int)$_REQUEST['jobid']), array('$inc' => array("numberOfPorters" => -1)));
+
+  $coll = $db->jobs;
+  $coll->update(array("_id" => (int)$_REQUEST['jobid']), array('$push' => array("porters" => (int)$_REQUEST['userid'])));
+
+  $coll = $db->jobs;
+  $coll->update(array("numberOfPorters" => array('$eq'=>0)), array('$set' => array("status" => "ongoing")));
+} else if ($_REQUEST['action'] == "finishJob") {
+  $coll = $db->porters;
+  $newdata = array('$set' => array("status" => "available"));
+  $coll->update(array("_id" => (int)$_REQUEST['userid']), $newdata);
+} else if ($_REQUEST['action'] == "porterAvailable") {
+  $coll = $db->porters;
+  $newdata = array('$set' => array("status" => "available"));
+  $coll->update(array("_id" => (int)$_REQUEST['userid']), $newdata);
+} else if ($_REQUEST['action'] == "porterSleep") {
+  $coll = $db->porters;
+  $newdata = array('$set' => array("status" => "sleep"));
+  $coll->update(array("_id" => (int)$_REQUEST['userid']), $newdata);
+}
     //var_dump($result);
 
 

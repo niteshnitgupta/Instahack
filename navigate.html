@@ -168,13 +168,15 @@
 			});
 
 			$("#complete_trip").click(function(){
-				$.get("http://192.168.6.167:8888/Instahack/porter_server.php?action=finishJob&porterid=", function(){
+				$.get("http://192.168.6.167:8888/Instahack/porter_server.php?action=finishJob&userid="+window.localStorage.getItem("key"), function(){
 					window.location.replace("index.html");
 				});
 			});
 			function logout() {
-				window.localStorage.removeItem("key");
-				window.location.replace("login.html");
+				$.get("http://192.168.6.167:8888/Instahack/porter_server.php?action=porterSleep&userid="+window.localStorage.getItem("key"), function(){
+					window.localStorage.removeItem("key");
+					window.location.replace("login.html");
+				});
 			}
 		</script>
 		<script async defer
