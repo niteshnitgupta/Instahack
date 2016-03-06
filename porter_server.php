@@ -100,6 +100,25 @@ if ($_REQUEST['action'] == "findPorters") {
 
         echo json_encode(iterator_to_array($resultset));
 
+}else if ($_REQUEST['action'] == "getPorterList") {
+  $coll = $db->porters;
+  $cursor = $coll->find(
+      array('location' =>
+          array( '$near' =>
+             array(
+               '$geometry' => array(
+                  'type' => "Point" ,
+                  'coordinates' => array((float)$_REQUEST['lat'], (float)$_REQUEST['lon']) ),
+               '$maxDistance'=> 1000
+             )
+          )
+       )
+    	);
+
+    	$resultset = $cursor;
+
+        echo json_encode(iterator_to_array($resultset));
+
 }
 
     //var_dump($result);

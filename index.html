@@ -48,7 +48,7 @@
 					</a>
 				</div>
 				<div style="float:right; background-color:#67d3e0 !important;">
-					<button id="showLeftPush"><i class="fa fa-lock"></i></button>
+					<button id="showLeftPush" onclick="logout();"><i class="fa fa-lock"></i></button>
 					<div class="clearfix" style=" background-color:#67d3e0 !important;"> </div>
 				</div>
 			</div>
@@ -88,8 +88,13 @@
 
 
 		<link href="css/bootstrap.min.css" rel="stylesheet">
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.js"></script>
 <script>
+
+if($.cookie("userid") === undefined) {
+	window.location.replace("login.html");
+}
+
 	function getJobs() {
 		$.get("http://192.168.6.167:8888/Instahack/porter_server.php?action=getListPorter&lat=" + cur_latitude + "&lon=" + cur_longitude, function( data ) {
 			$("#listOfJobs").html("");
@@ -149,7 +154,10 @@ function showPosition(position) {
 		getJobs();
 }
 
-
+function logout() {
+	$.removeCookie('userid');
+	window.location.replace("login.html");
+}
 getLocation();
 </script>
 

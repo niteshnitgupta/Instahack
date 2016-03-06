@@ -85,7 +85,7 @@
 					</a>
 				</div>
 				<div style="float:right; background-color:#67d3e0 !important;">
-					<button id="showLeftPush"><i class="fa fa-lock"></i></button>
+					<button id="showLeftPush" onclick="logout()"><i class="fa fa-lock"></i></button>
 					<div class="clearfix" style=" background-color:#67d3e0 !important;"> </div>
 				</div>
 			</div>
@@ -121,6 +121,7 @@
 
 
 		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.js"></script>
 
 		<script>
 		function getParameterByName(name, url) {
@@ -171,7 +172,10 @@
 					window.location.replace("index.html");
 				});
 			});
-
+			function logout() {
+				$.removeCookie('userid');
+				window.location.replace("login.html");
+			}
 		</script>
 		<script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcBqJqh-Us9rSE8_57dLVm4Kq1L_Ccink&callback=initMap&language=hi">

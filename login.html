@@ -1,79 +1,103 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Baxster an Admin Panel Category Flat Bootstrap Responsive Website Template | Login :: w3layouts</title>
+<title>Portals</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Baxster Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-<!-- Custom CSS -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />
-<!-- font CSS -->
 <link rel="icon" href="favicon.ico" type="image/x-icon" >
-<!-- font-awesome icons -->
-<link href="css/font-awesome.css" rel="stylesheet"> 
-<!-- //font-awesome icons -->
+<plugin name="cordova-plugin-whitelist" />
+<access origin="http://phonegap.com" subdomains="true" />
+
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="css/hover.css" rel="stylesheet">
+<script src="js/jquery-1.11.1.min.js"></script>
 <!--webfonts-->
 <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
-<!--//webfonts--> 
-<!-- js -->
-<script src="js/jquery-1.11.1.min.js"></script>
-<!-- //js -->
-</head> 
+<!--//webfonts-->
+<!--animate-->
+<link href="css/animate.css" rel="stylesheet" type="text/css" media="all">
+<script src="js/wow.min.js"></script>
+	<script>
+		 new WOW().init();
+	</script>
+<!--//end-animate-->
+<!-- Metis Menu -->
+<script src="js/metisMenu.min.js"></script>
+<script src="js/custom.js"></script>
+<link href="css/custom.css" rel="stylesheet">
+<style type="text/css">
+	.login-heading {
+		background: none !important;
+	}
+	.login-info {
+		border: 2px solid #67d3e0
+	}
+	.login-heading h1 {
+	    color: #67d3e0 !important;
+	}
+	.login-info input[type="text"], .login-info input[type="password"] {
+	    font-size: 1.25em !important;
+	}
+</style>
+<!--//Metis Menu -->
+</head>
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+
+		<!-- header-starts -->
+		<div class="sticky-header header-section ">
+			<div class="header-left" style="background-color:#67d3e0 !important;">
+				<!--logo -->
+				<div class="logo" style="float:left;">
+					<a href="index.html">
+						<ul>
+							<li><img src="images/logo1.png" alt="" /></li>
+							<li><h1>Porters</h1></li>
+							<div class="clearfix"> </div>
+						</ul>
+					</a>
+				</div>
+				<div style="float:right; background-color:#67d3e0 !important;">
+					<button id="showLeftPush"><i class="fa fa-lock"></i></button>
+					<div class="clearfix" style=" background-color:#67d3e0 !important;"> </div>
+				</div>
+			</div>
+
+
+		</div>
+		<!-- //header-ends -->
+
 <body class="login-bg">
 		<div class="login-body">
 			<div class="login-heading">
 				<h1>Login</h1>
 			</div>
+			<div class="login-heading">
+				<h1>लॉगिन</h1>
+			</div>
 			<div class="login-info">
 				<form>
-					<input type="text" class="user" name="email" placeholder="Email" required="">
-					<input type="password" name="password" class="lock" placeholder="Password">
-					<div class="forgot-top-grids">
-						<div class="forgot-grid">
-							<ul>
-								<li>
-									<input type="checkbox" id="brand1" value="">
-									<label for="brand1"><span></span>Remember me</label>
-								</li>
-							</ul>
-						</div>
-						<div class="forgot">
-							<a href="#">Forgot password?</a>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-					<input type="submit" name="Sign In" value="Login">
-					<div class="signup-text">
-						<a href="signup.html">Don't have an account? Create one now</a>
-					</div>
-					<hr>
-					<h2>or login with</h2>
-					<div class="login-icons">
-						<ul>
-							<li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#" class="google"><i class="fa fa-google-plus"></i></a></li>
-							<li><a href="#" class="dribbble"><i class="fa fa-dribbble"></i></a></li>
-						</ul>
-					</div>
+					<input type="text" class="user" name="email" placeholder="ईमेल" required="">
+					<input type="password" name="password" class="lock" placeholder="पासवर्ड">
+					<input type="submit" name="Sign In" value="लॉगिन" id="login">
 				</form>
 			</div>
 		</div>
 		<div class="go-back login-go-back">
 				<a href="index.html">Go To Home</a>
 			</div>
-		<div class="copyright login-copyright">
-           <p>© 2016 Baxster . All Rights Reserved . Design by <a href="http://w3layouts.com/">W3layouts</a></p>    
-		</div>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.js"></script>
+			<script type="text/javascript">
+			$.cookie("userid","1");
+			$(document).on('click','#login',function(e) {
+				e.preventDefault();
+				window.location.href = 'index.html';
+			})
+			
+		</script>
 </body>
 </html>
